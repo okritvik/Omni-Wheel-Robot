@@ -34,7 +34,7 @@ Omni-Robot has 3 wheels seperated at 120 degrees with each other. The geometry a
 * Connect the Ultrasonic sensor with the arduino mega
 * Connect the motor signal pins of Arduino with Driver shields
 * Connect the Raspberry Pi V2 Camera with Jetson Nano CSI port
-* Dont connect the batteries and power supply
+* Do not connect the batteries and power supply
 ## Checking the Jetson Nano
 * First insert the flashed SD card into Jetson Nano
 * Connect the network adapter
@@ -69,3 +69,5 @@ Omni-Robot has 3 wheels seperated at 120 degrees with each other. The geometry a
 * Improve the speed of motors by using different motors with greater RPM
 * Change the Coco model to custom DL model (Trained and Annotated) and can be used in several applications like agricultural, service sector and many other fields.
 * Any doubts can be emailed to `okritvik@gmail.com`
+
+* This readme file is updated with the help of Shreya B, student of Keshav Memorial Institute of Technology, Hyderabad
