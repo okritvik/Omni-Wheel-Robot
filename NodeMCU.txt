@@ -1,0 +1,107 @@
+#include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
+const char* ssid = "";  // Enter SSID here
+const char* password = "";  //Enter Password here
+
+ESP8266WebServer server(80);
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  delay(100);
+  Serial.println("Connecting to ");
+  WiFi.mode(WIFI_STA);
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  while(WiFi.status() != WL_CONNECTED){
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.println("WiFi connected..!");
+  Serial.print("Got IP: ");  Serial.println(WiFi.localIP());
+  server.on("/", handleRoot);      //Which routine to handle at root
+  server.on("/rotate",RotateBot);
+  server.on("/left",MoveLeft);
+  server.on("/right",MoveRight);
+  server.on("/stop",Stop);
+  server.on("/front",MoveFront);
+  server.on("/back",MoveBack);
+  server.onNotFound(handle_NotFound);     
+  server.begin();
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  server.handleClient();
+
+}
+void handleRoot(){
+  server.send(200,"text/html",FrontPage());
+}
+void MoveLeft(){
+  //Serial.println("Left button clicked");
+  Serial.write("L");
+  server.send(200,"text/html",FrontPage());
+}
+
+void MoveRight(){
+  //Serial.println("Right button clicked");
+  Serial.write("R");
+  server.send(200,"text/html",FrontPage());
+}
+
+void MoveFront(){
+  //Serial.println("Front button clicked");
+  Serial.write("F");
+  server.send(200,"text/html",FrontPage());
+}
+
+void MoveBack(){
+  //Serial.println("Back button clicked");
+  Serial.write("B");
+  server.send(200,"text/html",FrontPage());
+}
+
+void Stop(){
+  //Serial.println("Stop button clicked");
+  Serial.write("S");
+  server.send(200,"text/html",FrontPage());
+}
+void RotateBot(){
+  String degree = server.arg("Angle");
+  //Serial.println(degree);
+//  Serial.println(action);
+  Serial.write(degree.toInt()); 
+  //String str = "<a href='/'> Go Back </a>";
+  server.send(200,"text/html",FrontPage());
+}
+void handle_NotFound(){
+  server.send(404, "text/plain", "Not found");
+}
+String FrontPage(){
+  String s = "<!DOCTYPE html>\n";
+  s+="<html>\n";
+  s+="<head>\n";
+  s+="<head>\n";
+  s+="<title>OMNI ROBOT </title>\n";
+  s+="</head>\n";
+  s+="<body>\n";
+  s+="<center>\n";
+  s+="<h1>OMNI ROBOT</h1>\n";
+  s+="</center>\n";
+  s+="<p>Enter the Angle of Rotation for The ROBOT</p>\n";
+  s+="<form action=\"/rotate\">\n";
+  s+="<input type=\"text\" name = \"Angle\">\n";
+  s+="<input type=\"submit\" name = \"SUBMIT\" value = \"SUBMIT\">\n";
+  s+="<br><br><br>";
+  s+="<p>Buttons to move the bot</p><br><br>";
+  s+="<input type = \"button\" name = \"Button\" value = \"LEFT\" onclick = \"window.location.href='/left'\">";
+  s+="<input type = \"button\" name = \"Button\" value = \"RIGHT\"onclick = \"window.location.href='/right'\">";
+  s+="<input type = \"button\" name = \"Button\" value = \"STOP\"onclick = \"window.location.href='/stop'\">";
+  s+="<input type = \"button\" name = \"Button\" value = \"FRONT\"onclick = \"window.location.href='/front'\">";
+  s+="<input type = \"button\" name = \"Button\" value = \"BACK\"onclick = \"window.location.href='/back'\">";
+  s+="</form>\n";
+  s+="</body>\n";
+  s+="</html>\n";
+  return s;
+}

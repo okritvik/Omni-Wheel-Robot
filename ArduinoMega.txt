@@ -1,0 +1,151 @@
+int M11=22,M12=23,M21=24,M22=25,M31=26,M32=27;
+int mstime = 40;
+String degree="";
+int intdegree = 0;
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(M11,OUTPUT);
+  pinMode(M12,OUTPUT);
+  pinMode(M21,OUTPUT);
+  pinMode(M22,OUTPUT);
+  pinMode(M31,OUTPUT);
+  pinMode(M32,OUTPUT);
+  //Declaring PWM Output Pins
+  pinMode(8,OUTPUT);
+  pinMode(9,OUTPUT);
+  pinMode(10,OUTPUT);
+  //255 PWM is Highest speed
+  analogWrite(8,255);
+  analogWrite(9,255);
+  analogWrite(10,255);
+  //Initial Setup of Motor ( Making all 0 )
+  digitalWrite(M11,LOW);
+  digitalWrite(M12,LOW);
+  digitalWrite(M21,LOW);
+  digitalWrite(M22,LOW);
+  digitalWrite(M31,LOW);
+  digitalWrite(M32,LOW);
+}
+bool l=false,r=false,b=false,f=false,s=false;
+void loop() {
+  if(Serial.available()>0){
+    degree="";
+    degree = Serial.readString();
+    Serial.print("Degree String = ");
+    Serial.println(degree);
+    if(degree.toInt==0){
+      if(degree=="L"){
+        Circular(-90);
+        l=true;
+        r=false;
+        b=false;
+        f=false;
+        s=false;
+      }
+      else if(degree=="R"){
+        Circular(90);
+        l=false;
+        r=true;
+        b=false;
+        f=false;
+        s=false;
+      }
+      else if(degree=="F"){
+        f=true;
+        r=false;
+        b=false;
+        l=false;
+        s=false;
+      }
+      else if(degree=="B"){
+        b=true;
+        r=false;
+        l=false;
+        f=false;
+        s=false;
+      }
+      else if(degree=="S"){
+        s=true;
+        r=false;
+        b=false;
+        f=false;
+        l=false;
+      }
+      else{
+        Circular(0)
+      }
+    }
+    else{
+      intdegree = degree.toInt();
+      //Serial.print("Degree Int = ");
+      //Serial.println(intdegree);
+      Circular(intdegree);
+    }
+  }
+  else{
+    if(l){
+      omni(0,0,0,0,255,255);
+      delay(5);
+    }
+    else if(r){
+      omni(0,0,0,0,255,255);
+      delay(5);
+    }
+    else if(f){
+      omni(0,0,0,0,255,255);
+      delay(5);
+    }
+    else if(b){
+      omni(0,1,1,0,255,255);
+      delay(5);
+    }
+    else{
+      omni(0,0,0,0,0,0);
+      delay(5);
+    }
+  }
+}
+void Circular(int deg){
+  int  delaytime_ms=0;
+  if(deg>0){
+    delaytime_ms = 40*deg;
+    omni(0,0,1,255,255,255);
+  }
+  else{
+    delaytime_ms = -40*deg;
+    omni(1,1,0,255,255,255);
+  }
+  delay(delaytime_ms);
+  omni(0,0,0,0,0,0);
+  delay(5);  
+}
+void omni(int dir_a, int dir_b, int dir_c, int pwm_a, int pwm_b, int pwm_c){
+  analogWrite(8,pwm_a);
+  if(dir_a == 0){
+    digitalWrite(M11,HIGH);
+    digitalWrite(M12,LOW);
+  }
+  if(dir_a == 1){
+    digitalWrite(M11,LOW);
+    digitalWrite(M12,HIGH);
+  }
+  analogWrite(9,pwm_b);
+  if(dir_b == 0){
+    digitalWrite(M21,HIGH);
+    digitalWrite(M22,LOW);
+  }
+  if(dir_b == 1){
+    digitalWrite(M21,LOW);
+    digitalWrite(M22,HIGH);
+  }
+  analogWrite(10,pwm_c);
+  if(dir_c == 0){
+    digitalWrite(M31,HIGH);
+    digitalWrite(M32,LOW);
+  }
+  if(dir_c == 1){
+    digitalWrite(M31,LOW);
+    digitalWrite(M32,HIGH);
+  }
+}
