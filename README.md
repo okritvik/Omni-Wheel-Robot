@@ -15,12 +15,16 @@ Omni-Robot has 3 wheels seperated at 120 degrees with each other. The geometry a
 * Circular Frame - 1
 * Sufficient Jumper Wires
 ## Connection Diagram / Block Diagram
-![Block_diagram](Images/Block_diagram.png)
-<img src="Images/IMG20210624145248.jpg" width="250" height="250" /><br />
-<img src="Images/IMG20210624145302.jpg" width="250" height="250" /><br />
-<img src="Images/IMG20210624145310.jpg" width="250" height="250" /><br />
-<img src="Images/IMG20210624145341.jpg" width="250" height="250" /><br />
-<img src="Images/IMG_20210629_143102.jpg" width="250" height="250" />
+![Block_diagram](https://user-images.githubusercontent.com/40200916/152705790-386169c4-532b-4f39-a526-75003b67d9ac.jpg)
+
+Jetson Nano CSI Connection | Jetson Nano Power Connection| DC-DC Buck
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="Images/IMG20210624145248.jpg" width="250" height="250"> | <img src="Images/IMG20210624145302.jpg" width="250" height="250"> | <img src="Images/IMG20210624145310.jpg" width="250" height="250">
+
+Arduino Mega Connections   | Arduino Mega Power Supply
+:-------------------------:|:------------------------:
+<img src="Images/IMG20210624145341.jpg" width="250" height="250"> | <img src="Images/IMG_20210629_143102.jpg" width="250" height="250">
+
 
 ## Flashing the SD Card with Jetson Nano Jetpack OS
 [Click Here to go through each step](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit)
@@ -57,7 +61,11 @@ Omni-Robot has 3 wheels seperated at 120 degrees with each other. The geometry a
 * Enter the password if that was setup for Jetson
 * Now change the working directory to the cloned repository path
 * Change the working directory to Jetson Codes
-* Now run the code using `sudo python3 detect-bottles.py`. If sudo is not used, the program maynot run because the usb ports are only accessed by root user.
+* Now run the code using 
+  ```
+  sudo python3 detect-bottles.py
+  ```
+* If sudo is not used, the program maynot run because the usb ports are only accessed by root user.
 ## ENJOY THE PROJECT
 
 
@@ -69,5 +77,13 @@ Omni-Robot has 3 wheels seperated at 120 degrees with each other. The geometry a
 * Improve the speed of motors by using different motors with greater RPM
 * Change the Coco model to custom DL model (Trained and Annotated) and can be used in several applications like agricultural, service sector and many other fields.
 * Any doubts can be emailed to `okritvik@gmail.com`
+
+* Test run of the robot can be viewed [here](https://youtu.be/h2_iX6AJ6u0)
+
+<p align = "center">
+  <a href="https://youtu.be/h2_iX6AJ6u0" target="_blank">
+    <img src="https://user-images.githubusercontent.com/40200916/152705678-eb1412f9-2464-45f1-a9fc-d5641730ffe8.png" alt="Watch the video" width="240" height="180" border="10" />
+  </a>
+</p>
 
 * This readme file is updated with the help of Shreya B, student of Keshav Memorial Institute of Technology, Hyderabad
