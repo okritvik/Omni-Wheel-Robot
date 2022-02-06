@@ -1,6 +1,6 @@
 # Omni-Robot
 ## Introduction
-Omni-Robot has 3 wheels seperated at 120 degrees with each other. The geometry and velocity calculations are available in the pdf provided with this repository. This omni wheel robot is autonomous and it detects bottles in its field of vision. It further tracks the first detected object and tries to keep it in the centre of the image frame. The ultrasonic sensor gives the distance between the robot and the tracked object. Motor stops when the distance between robot and bottle is less than 21 centimetres. 
+Omni-Robot has 3 wheels seperated at 120 degrees with each other. The geometry and velocity calculations are available in the [pdf](applsci-08-00231.pdf) provided with this repository. This omni wheel robot is autonomous and it detects bottles in its field of vision. It further tracks the first detected object and tries to keep it in the centre of the image frame. The ultrasonic sensor gives the distance between the robot and the tracked object. Motor stops when the distance between robot and bottle is less than 21 centimetres. 
 ## Components
 * Jetson Nano 2GB
 * 64GB SD Card
@@ -48,10 +48,17 @@ Arduino Mega Connections   | Arduino Mega Power Supply
 * Now clone this repository
 * Make sure to remember the path and also the IP Address of Jetson NANO
 * Connect the USB cable of Arduino Mega with Jetson Nano
-* First run the detect-bottles.py using command `sudo python3 detect-bottles.py`
+* First run the detect-bottles.py using command 
+  ```
+  sudo python3 detect-bottles.py
+  ```
 * NOTE: Raspberry Pi V1  Camera doesnt work.
 * If camera error is showing up, the possible workaround is to check the connection first and then run a sample code to check the camera working.
-* If there is a problem with ACM0 port, check the usb port number by using command `dmesg | grep tty`. Check if the Arduino is connected to /dev/ttyACM0. If it is connected to /dev/ttyACM1, change the same in python code.
+* If there is a problem with ACM0 port, check the usb port number by using command 
+  ```
+  dmesg | grep tty
+  ``` 
+* Check if the Arduino is connected to /dev/ttyACM0. If it is connected to /dev/ttyACM1, change the same in python code.
 ## Running the whole model
 * Now shut-down the jetson nano (dont forget to note down the IP Address).
 * Remove the power from Adapter.
@@ -76,7 +83,10 @@ Arduino Mega Connections   | Arduino Mega Power Supply
 * Use ROS to develop the whole project using Publisher, Subscriber, Actions and Services.
 * Improve the speed of motors by using different motors with greater RPM
 * Change the Coco model to custom DL model (Trained and Annotated) and can be used in several applications like agricultural, service sector and many other fields.
-* Any doubts can be emailed to `okritvik@gmail.com`
+* Any doubts can be emailed to 
+  ```
+  okritvik@gmail.com
+  ```
 
 * Test run of the robot can be viewed [here](https://youtu.be/h2_iX6AJ6u0)
 
