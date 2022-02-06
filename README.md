@@ -57,7 +57,7 @@ Arduino Mega Connections   | Arduino Mega Power Supply
 * Remove the power from Adapter.
 * Place the Robot on floor and place a bottle to track.
 * Now power on the Jetson using the Battery (5v buck output)
-* Install PuTTY in your laptop and ssh jetson nano using the ip address.
+* [Install PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) in your laptop and ssh jetson nano using the ip address.
 * Enter the password if that was setup for Jetson
 * Now change the working directory to the cloned repository path
 * Change the working directory to Jetson Codes
